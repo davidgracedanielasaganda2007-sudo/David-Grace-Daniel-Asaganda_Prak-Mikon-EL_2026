@@ -24,9 +24,9 @@ void setup() {
   ledcSetup(0, 5000, 8);
   ledcAttachPin(pwmPin, 0);
 
+  float persentasePWM = 0.0;
   float arus = ina219.getCurrent_mA();
   float tegangan_V = ina219.getBusVoltage_V();
-  float daya_mW = ina219.getPower_mW();
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 }
@@ -38,9 +38,9 @@ void loop() {
   ledcWrite(0, pwmValue); // Set kecepatan motor (0-255)
   delay(15);
 
+  float persentasePWM = (pwmValue / 255.0) * 100.0;
   float arus = ina219.getCurrent_mA();
   float tegangan_V = ina219.getBusVoltage_V();
-  float daya_mW = ina219.getPower_mW();
   delay(1000);
 
   display.clearDisplay();
